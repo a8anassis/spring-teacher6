@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Teacher</title>
+</head>
+<body>
+
+<div th:if="${errorMessage}" class="error">
+    <p th:text="${errorMessage}"></p>
+</div>
+
+<form action="@{/school/teachers/insert}" method="POST" th:object="${teacherInsertDTO}">
+
+    <label for="firstname">First Name:</label>
+    <input type="text" id="firstname" th:field="*{firstname}"
+        th:classappend="${#fields.hasErrors('firstname')} ? 'error'" />
+    <div th:if="${#fields.hasErrors('firstname')}">
+        <p th:errors="*{firstname}"></p>
+    </div>
+
+    <label for="lastname">Lastname Name:</label>
+    <input type="text" id="lastname" th:field="*{lastname}"
+           th:classappend="${#fields.hasErrors('lastname')} ? 'error'" />
+    <div th:if="${#fields.hasErrors('lastname')}">
+        <p th:errors="*{lastname}"></p>
+    </div>
+
+    <label for="vat">Vat: </label>
+    <input type="text" id="vat" th:field="*{vat}"
+           th:classappend="${#fields.hasErrors('vat')} ? 'error'" />
+    <div th:if="${#fields.hasErrors('vat')}">
+        <p th:errors="*{vat}"></p>
+    </div>
+
+    <label for="region">Region:</label>
+    <select name="" id="region" th:field="*{regionId}">
+        <option value="" selected>Select Region</option>
+        <option th:each="region : ${regions}" th:value="${region.id}" th:text="${region.name}"></option>
+    </select>
+
+    <button type="submit">Save Teacher</button>
+</form>
+
+</body>
+</html>
