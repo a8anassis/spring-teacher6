@@ -34,7 +34,7 @@ public class TeacherController {
     @GetMapping("/teachers")
     public String getPaginatedTeachers(
             @RequestParam(defaultValue = "0") int page,  // Default to the first page (0-indexed)
-            @RequestParam(defaultValue = "5") int size,  // Default page size
+            @RequestParam(defaultValue = "1") int size,  // Default page size
             Model model) {
 
         // Get paginated TeacherReadOnlyDTOs
@@ -45,7 +45,7 @@ public class TeacherController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", teachersPage.getTotalPages());
 
-        return "teachers";  // Return Thymeleaf view (teachers.html)
+        return "teachers";
     }
 
 
