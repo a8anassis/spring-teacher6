@@ -75,14 +75,8 @@ public class TeacherController {
             return "teacher-form";
         }
 
-        //return "redirect:/teachers";
-
         TeacherReadOnlyDTO teacherReadOnlyDTO = mapper.mapToTeacherReadOnlyDTO(savedTeacher);
-        model.addAttribute("teacher", savedTeacher);
+        model.addAttribute("teacher", teacherReadOnlyDTO);
         return "success";
-
     }
-
-
-
 }
