@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paginated Teachers List</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/teachers.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: headerFragment"></div>
+
+<h1>Teachers List</h1>
+
+<div class="main-content">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>UUID</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>VAT</th>
+            <th>Region</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterate over the content of the current page -->
+        <tr th:each="teacher : ${teachersPage.content}">
+            <td th:text="${teacher.id}"></td>
+            <td th:text="${teacher.uuid}"></td>
+            <td th:text="${teacher.firstname}"></td>
+            <td th:text="${teacher.lastname}"></td>
+            <td th:text="${teacher.vat}"></td>
+            <td th:text="${teacher.region}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <!-- Pagination controls -->
+<!--    <div class="pagination-controls">-->
+<!--        <ul>-->
+<!--            &lt;!&ndash; Show 'Previous' link if not on the first page &ndash;&gt;-->
+<!--            <li th:if="${currentPage > 0}">-->
+<!--                <a th:href="@{/school/teachers(page=${currentPage - 1}, size=${teachersPage.size})}">Previous</a>-->
+<!--            </li>-->
+
+<!--            &lt;!&ndash; Show 'Next' link if not on the last page &ndash;&gt;-->
+<!--            <li th:if="${currentPage + 1 < totalPages}">-->
+<!--                <a th:href="@{/school/teachers(page=${currentPage + 1}, size=${teachersPage.size})}">Next</a>-->
+<!--            </li>-->
+
+<!--            &lt;!&ndash; Show page numbers &ndash;&gt;-->
+<!--            <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}">-->
+<!--                <a th:href="@{/school/teachers(page=${i}, size=${teachersPage.size})}" th:text="${i + 1}">1</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+
+    <div class="pagination-controls">
+        <!-- Link to first page (disabled if already on the first page) -->
+        <a th:if="${currentPage > 0}" th:href="@{/school/teachers(page=0, size=${teachersPage.size})}">&laquo; First</a>
+        <span th:if="${currentPage == 0}" class="disabled">&laquo; First</span>
+
+        <!-- Link to previous page (disabled if already on the first page) -->
+        <a th:if="${currentPage > 0}" th:href="@{/school/teachers(page=${currentPage - 1}, size=${teachersPage.size})}">&lsaquo; Prev</a>
+        <span th:if="${currentPage == 0}" class="disabled">&lsaquo; Prev</span>
+
+        <!-- Display current page / total pages -->
+        <span th:text="${currentPage + 1} + ' / ' + ${totalPages}"></span>
+
+        <!-- Link to next page (disabled if on the last page) -->
+        <a th:if="${currentPage + 1 < totalPages}" th:href="@{/school/teachers(page=${currentPage + 1}, size=${teachersPage.size})}">Next &rsaquo;</a>
+        <span th:if="${currentPage + 1 == totalPages}" class="disabled">Next &rsaquo;</span>
+
+        <!-- Link to last page (disabled if already on the last page) -->
+        <a th:if="${currentPage + 1 < totalPages}" th:href="@{/school/teachers(page=${totalPages - 1}, size=${teachersPage.size})}">Last &raquo;</a>
+        <span th:if="${currentPage + 1 == totalPages}" class="disabled">Last &raquo;</span>
+    </div>
+</div>
+
+
+
+
+<div th:replace="fragments/footer :: footerFragment"></div>
+</body>
+</html>

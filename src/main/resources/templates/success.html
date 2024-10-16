@@ -3,9 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        :root {
+            --green-color: #006736; /* Green */
+            --green-color-hover: #218838; /* Darker Green */
+            --light-color: #e8e8f2; /* Light Background */
+            --dark-color: #343a40; /* Dark Text */
+            --dark-blue: #3b3b97;
+        }
+
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .success {
+            display: flex;
+            flex-direction: column;
+            place-items: center;
+            width: 50vw;
+            height: 50vh;
+            border: 1px solid black;
+            background-color: var(--green-color);
+            color: var(--light-color);
+        }
+
+        .m-bottom {
+            margin-bottom: 20px;
+        }
+    </style>
+
 </head>
 <body>
 
-    <p>Success</p>
+<div class="container">
+    <div class="success m-bottom">
+        <h1>Επιτυχής Εγγραφή</h1>
+        <p>UUID: <span th:text="${teacher.uuid}"></span></p>
+    </div>
+
+    <div>
+        <a th:href="@{/login}">Επιστροφή</a>
+    </div>
+</div>
+
+
 </body>
 </html>

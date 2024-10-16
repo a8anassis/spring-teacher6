@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+
+<header th:fragment="headerFragment">
+    <div class="outer">
+        <div class="items">
+            <a th:href="@{/}">
+                <img class="gov-gr-logo" th:src="@{/img/gov_header_logo.svg}" alt="Government Logo" width="40" height="auto">
+            </a>
+            <span class="title">Coding Factory - Education Reinvented</span>
+        </div>
+        <div class="login-name">
+            <!-- Access user details using Spring Security's #authentication -->
+<!--            <span th:text="${#authentication.name}"></span> &lt;!&ndash; Username or identifier &ndash;&gt;-->
+<!--            <div th:if="${#authentication.name != null}">-->
+<!--                <a class="log-out" th:href="@{/logout}">Έξοδος</a>-->
+<!--            </div>-->
+            <span th:text="Name"></span> <!-- Username or identifier -->
+<!--            <div th:if="${#authentication.name != null}">-->
+                <a class="log-out" th:href="@{/logout}">Έξοδος</a>
+<!--            </div>-->
+        </div>
+    </div>
+    <div class="line"></div>
+</header>
+
+</body>
+</html>

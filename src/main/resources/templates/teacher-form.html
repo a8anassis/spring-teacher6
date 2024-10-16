@@ -3,44 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>Create New Teacher</title>
+<!--    <link rel="stylesheet" th:href="@{/css/footer.css}">-->
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/trinsert.css}">
 </head>
 <body>
+<!-- Include the header fragment -->
+<div th:replace="fragments/header :: headerFragment"></div>
 
-<div th:if="${errorMessage}" class="error">
-    <p th:text="${errorMessage}"></p>
-</div>
+<main class="main-content">
+    <div class="outer-content">
+        <div th:if="${errorMessage}" class="error">
+            <p th:text="${errorMessage}"></p>
+        </div>
+        <!--<form action="@{/school/teachers/insert}" method="POST" th:object="${teacherInsertDTO}">-->
+        <form method="POST" th:object="${teacherInsertDTO}">
+            <div class="row">
+                <div>
+                    <label for="firstname">First Name:</label><br>
+                    <input type="text" id="firstname" th:field="*{firstname}"
+                           th:classappend="${#fields.hasErrors('firstname')} ? 'error'" />
+                    <div th:if="${#fields.hasErrors('firstname')}">
+                        <p th:errors="*{firstname}"></p>
+                    </div>
+                </div>
 
-<form action="@{/school/teachers/insert}" method="POST" th:object="${teacherInsertDTO}">
+                <div>
+                    <label for="lastname">Lastname Name:</label><br>
+                    <input type="text" id="lastname" th:field="*{lastname}"
+                           th:classappend="${#fields.hasErrors('lastname')} ? 'error'" />
+                    <div th:if="${#fields.hasErrors('lastname')}">
+                        <p th:errors="*{lastname}"></p>
+                    </div>
+                </div>
 
-    <label for="firstname">First Name:</label>
-    <input type="text" id="firstname" th:field="*{firstname}"
-        th:classappend="${#fields.hasErrors('firstname')} ? 'error'" />
-    <div th:if="${#fields.hasErrors('firstname')}">
-        <p th:errors="*{firstname}"></p>
+
+                <div>
+                    <label for="vat">Vat: </label><br>
+                    <input type="text" id="vat" th:field="*{vat}"
+                           th:classappend="${#fields.hasErrors('vat')} ? 'error'" />
+                    <div th:if="${#fields.hasErrors('vat')}">
+                        <p th:errors="*{vat}"></p>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="region">Region:</label><br>
+                    <select name="" id="region" th:field="*{regionId}">
+                        <option value="" selected>Select Region</option>
+                        <option th:each="region : ${regions}" th:value="${region.id}" th:text="${region.name}"></option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <button type="submit" class="custom-button-green">Save Teacher</button>
+            </div>
+
+        </form>
     </div>
+</main>
 
-    <label for="lastname">Lastname Name:</label>
-    <input type="text" id="lastname" th:field="*{lastname}"
-           th:classappend="${#fields.hasErrors('lastname')} ? 'error'" />
-    <div th:if="${#fields.hasErrors('lastname')}">
-        <p th:errors="*{lastname}"></p>
-    </div>
-
-    <label for="vat">Vat: </label>
-    <input type="text" id="vat" th:field="*{vat}"
-           th:classappend="${#fields.hasErrors('vat')} ? 'error'" />
-    <div th:if="${#fields.hasErrors('vat')}">
-        <p th:errors="*{vat}"></p>
-    </div>
-
-    <label for="region">Region:</label>
-    <select name="" id="region" th:field="*{regionId}">
-        <option value="" selected>Select Region</option>
-        <option th:each="region : ${regions}" th:value="${region.id}" th:text="${region.name}"></option>
-    </select>
-
-    <button type="submit">Save Teacher</button>
-</form>
+<div th:replace="fragments/footer :: footerFragment"></div>
 
 </body>
 </html>

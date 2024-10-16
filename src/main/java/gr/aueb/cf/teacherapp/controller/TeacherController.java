@@ -13,12 +13,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.parser.Entity;
 
@@ -32,6 +31,24 @@ public class TeacherController {
     private final RegionService regionService;
     private final Mapper mapper;
 
+    @GetMapping("/teachers")
+    public String getPaginatedTeachers(
+            @RequestParam(defaultValue = "0") int page,  // Default to the first page (0-indexed)
+            @RequestParam(defaultValue = "5") int size,  // Default page size
+            Model model) {
+
+        // Get paginated TeacherReadOnlyDTOs
+        Page<TeacherReadOnlyDTO> teachersPage = teacherService.getPaginatedTeachers(page, size);
+
+        // Add the page of teachers and pagination info to the model
+        model.addAttribute("teachersPage", teachersPage);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", teachersPage.getTotalPages());
+
+        return "teachers";  // Return Thymeleaf view (teachers.html)
+    }
+
+
     @GetMapping("/teachers/insert")
     public String getTeacherForm(Model model) {
         model.addAttribute("teacherInsertDTO", new TeacherInsertDTO());
@@ -39,6 +56,7 @@ public class TeacherController {
         return "teacher-form";
     }
 
+    @PostMapping("/teachers/insert")
     public String saveTeacher(@Valid @ModelAttribute("teacherInsertDTO") TeacherInsertDTO teacherInsertDTO,
                               BindingResult bindingResult,
                               Model model) {
@@ -62,11 +80,6 @@ public class TeacherController {
         TeacherReadOnlyDTO teacherReadOnlyDTO = mapper.mapToTeacherReadOnlyDTO(savedTeacher);
         model.addAttribute("teacher", savedTeacher);
         return "success";
-
-
-
-
-
 
     }
 
