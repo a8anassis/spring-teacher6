@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/springsecurity">
 <head>
 </head>
 <body>
@@ -17,9 +18,9 @@
 <!--            <div th:if="${#authentication.name != null}">-->
 <!--                <a class="log-out" th:href="@{/logout}">Έξοδος</a>-->
 <!--            </div>-->
-            <span th:text="Name"></span> <!-- Username or identifier -->
+            <span sec:authorize="isAuthenticated()" th:text="${#authentication.name}"></span>
 <!--            <div th:if="${#authentication.name != null}">-->
-                <a class="log-out" th:href="@{/logout}">Έξοδος</a>
+            <a class="log-out" th:href="@{/logout}" sec:authorize="isAuthenticated()">Έξοδος</a>
 <!--            </div>-->
         </div>
     </div>

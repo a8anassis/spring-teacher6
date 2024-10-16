@@ -44,14 +44,15 @@ public class SecurityConfig {
                  * @param authorize the object that allows to add URL-based access control rules
                  */
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/teachers/register").permitAll()
-                        .requestMatchers("/students/**").hasAnyAuthority(Role.STUDENT.name())
-                        .requestMatchers("/teachers/**").hasAnyAuthority(Role.TEACHER.name())
+                        .requestMatchers("/", "/index.html").permitAll()
+                        .requestMatchers("school/users/register").permitAll()
+//                        .requestMatchers("/school/teachers/insert").authenticated()
+                        .requestMatchers("/school/teachers/**").hasAnyAuthority(Role.TEACHER.name())
 
                         // no need for logout.permitAll, logout filter
                         // is applied before all authentication filters
                         //.requestMatchers("/logout").permitAll()
-                        .requestMatchers("/styles/**").permitAll()
+                        .requestMatchers("/css/**").permitAll()
                         .requestMatchers("/js/**").permitAll()
                         .requestMatchers("/img/**").permitAll()
                         .anyRequest().authenticated()
@@ -64,7 +65,7 @@ public class SecurityConfig {
                                  */
                                 .loginPage("/login")                    // NOT default
                                 .permitAll()
-                                //.defaultSuccessUrl("/dashboard")        // NOT default
+                                .defaultSuccessUrl("/school/teachers")        // NOT default
 
                         //.loginProcessingUrl("/login")         // default for post requests
                         //.usernameParameter("username")        // default

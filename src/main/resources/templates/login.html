@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+</head>
+<body>
+<div th:replace="~{fragments/header :: headerFragment}"></div>
+
+<div class="main-content">
+    <form th:action="@{/login}" method="POST">
+        <!--        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Username" autofocus>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Password">
+        <input type="submit" value="Submit">
+
+    </form>
+</div>
+
+<div th:if="${param.error}" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></div>
+
+<div th:replace="~{fragments/footer :: footerFragment}"></div>
+</body>
+</html>
