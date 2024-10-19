@@ -1,6 +1,5 @@
 package gr.aueb.cf.teacherapp.repository;
 
-
 import gr.aueb.cf.teacherapp.core.enums.Role;
 import gr.aueb.cf.teacherapp.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

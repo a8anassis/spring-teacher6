@@ -35,7 +35,6 @@
             margin-bottom: 20px;
         }
     </style>
-
 </head>
 <body>
 
@@ -44,9 +43,8 @@
         <h1>Επιτυχής Εγγραφή</h1>
         <p>UUID: <span th:text="${teacher.uuid}"></span></p>
     </div>
-
     <div>
-        <a th:href="@{/login}">Επιστροφή</a>
+        <a th:href="@{/school/teachers?page=1&size=10}">Επιστροφή</a>
     </div>
 </div>
 

@@ -36,25 +36,6 @@
         </tr>
         </tbody>
     </table>
-    <!-- Pagination controls -->
-<!--    <div class="pagination-controls">-->
-<!--        <ul>-->
-<!--            &lt;!&ndash; Show 'Previous' link if not on the first page &ndash;&gt;-->
-<!--            <li th:if="${currentPage > 0}">-->
-<!--                <a th:href="@{/school/teachers(page=${currentPage - 1}, size=${teachersPage.size})}">Previous</a>-->
-<!--            </li>-->
-
-<!--            &lt;!&ndash; Show 'Next' link if not on the last page &ndash;&gt;-->
-<!--            <li th:if="${currentPage + 1 < totalPages}">-->
-<!--                <a th:href="@{/school/teachers(page=${currentPage + 1}, size=${teachersPage.size})}">Next</a>-->
-<!--            </li>-->
-
-<!--            &lt;!&ndash; Show page numbers &ndash;&gt;-->
-<!--            <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}">-->
-<!--                <a th:href="@{/school/teachers(page=${i}, size=${teachersPage.size})}" th:text="${i + 1}">1</a>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </div>-->
 
     <div class="pagination-controls">
         <!-- Link to first page (disabled if already on the first page) -->
@@ -77,9 +58,6 @@
         <span th:if="${currentPage + 1 == totalPages}" class="disabled">Last &raquo;</span>
     </div>
 </div>
-
-
-
 
 <div th:replace="~{fragments/footer :: footerFragment}"></div>
 </body>

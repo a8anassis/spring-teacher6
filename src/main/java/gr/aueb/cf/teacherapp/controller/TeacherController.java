@@ -57,7 +57,8 @@ public class TeacherController {
     }
 
     @PostMapping("/teachers/insert")
-    public String saveTeacher(@Valid @ModelAttribute("teacherInsertDTO") TeacherInsertDTO teacherInsertDTO,
+    public String saveTeacher(@Valid @ModelAttribute("teacherInsertDTO")
+                                  TeacherInsertDTO teacherInsertDTO,
                               BindingResult bindingResult,
                               Model model) {
         Teacher savedTeacher;
@@ -75,14 +76,8 @@ public class TeacherController {
             return "teacher-form";
         }
 
-        //return "redirect:/teachers";
-
         TeacherReadOnlyDTO teacherReadOnlyDTO = mapper.mapToTeacherReadOnlyDTO(savedTeacher);
         model.addAttribute("teacher", savedTeacher);
         return "success";
-
     }
-
-
-
 }

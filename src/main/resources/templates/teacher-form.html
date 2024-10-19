@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Create New Teacher</title>
-<!--    <link rel="stylesheet" th:href="@{/css/footer.css}">-->
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/footer.css}">
@@ -18,7 +17,6 @@
         <div th:if="${errorMessage}" class="error">
             <p th:text="${errorMessage}"></p>
         </div>
-        <!--<form action="@{/school/teachers/insert}" method="POST" th:object="${teacherInsertDTO}">-->
         <form method="POST" th:object="${teacherInsertDTO}">
             <div class="row">
                 <div>
@@ -38,7 +36,6 @@
                         <p th:errors="*{lastname}"></p>
                     </div>
                 </div>
-
 
                 <div>
                     <label for="vat">Vat: </label><br>
