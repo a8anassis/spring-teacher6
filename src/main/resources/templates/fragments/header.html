@@ -13,15 +13,8 @@
             <span class="title">Coding Factory - Education Reinvented</span>
         </div>
         <div class="login-name">
-            <!-- Access user details using Spring Security's #authentication -->
-<!--            <span th:text="${#authentication.name}"></span> &lt;!&ndash; Username or identifier &ndash;&gt;-->
-<!--            <div th:if="${#authentication.name != null}">-->
-<!--                <a class="log-out" th:href="@{/logout}">Έξοδος</a>-->
-<!--            </div>-->
             <span sec:authorize="isAuthenticated()" th:text="${#authentication.name}"></span>
-<!--            <div th:if="${#authentication.name != null}">-->
             <a class="log-out" th:href="@{/logout}" sec:authorize="isAuthenticated()">Έξοδος</a>
-<!--            </div>-->
         </div>
     </div>
     <div class="line"></div>

@@ -15,13 +15,13 @@
 
     <div>
         <label for="username">Username:</label>
-        <input type="text" th:field="*{username}" id="username"/>
+        <input type="text" th:field="*{username}" id="username" name="username" />
         <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color: red;"></div>
     </div>
 
     <div>
         <label for="password">Password:</label>
-        <input type="password" th:field="*{password}" id="password"/>
+        <input type="password" th:field="*{password}" id="password" name="password"/>
         <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red;"></div>
     </div>
 
