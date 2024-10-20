@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Map;
 
 @Controller
 @RequestMapping("/school")
@@ -32,7 +31,8 @@ public class UserController {
     }
 
     @PostMapping("/users/register")
-    public String insertUser(@Valid @ModelAttribute("userInsertDTO") UserInsertDTO userInsertDTO,
+    public String insertUser(@Valid @ModelAttribute("userInsertDTO")
+                                 UserInsertDTO userInsertDTO,
                              BindingResult bindingResult,
                              Model model
                              ) {
