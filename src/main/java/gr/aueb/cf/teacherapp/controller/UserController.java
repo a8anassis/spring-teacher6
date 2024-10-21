@@ -45,7 +45,7 @@ public class UserController {
         // Convert DTO to User entity and save (here you also encrypt the password)
         User user = mapper.mapToUserEntity(userInsertDTO);
 
-        userService.saveUser(user);  // Encrypt password and save the user
+        userService.saveUser(user);
 
         return "redirect:/users/register?success";  // Redirect with success message
     }
