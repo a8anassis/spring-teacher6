@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.swing.text.html.parser.Entity;
 
@@ -60,24 +61,32 @@ public class TeacherController {
     public String saveTeacher(@Valid @ModelAttribute("teacherInsertDTO")
                                   TeacherInsertDTO teacherInsertDTO,
                               BindingResult bindingResult,
-                              Model model) {
+                              Model model, RedirectAttributes redirectAttributes) { // PRG Pattern
         Teacher savedTeacher;
         if (bindingResult.hasErrors()) {
+            model.addAttribute("regions", regionService.findAllRegions()); // Re-populate regions
             return "teacher-form";
         }
 
         try {
             savedTeacher = teacherService.saveTeacher(teacherInsertDTO);
             LOGGER.info("Teacher with id {} inserted", savedTeacher.getId());
-            //return "success";
+            TeacherReadOnlyDTO teacherReadOnlyDTO = mapper.mapToTeacherReadOnlyDTO(savedTeacher);
+            //model.addAttribute("teacher", savedTeacher);
+            redirectAttributes.addFlashAttribute("teacher", mapper.mapToTeacherReadOnlyDTO(savedTeacher));
+            return "redirect:/school/success";
         } catch (EntityAlreadyExistsException | EntityInvalidArgumentException e) {
-            LOGGER.error("Teacher with vat {} not inserted", teacherInsertDTO.getVat());
+            LOGGER.error("Teacher with vat={} not inserted", teacherInsertDTO.getVat(), e);
+            model.addAttribute("regions", regionService.findAllRegions()); // Re-populate
             model.addAttribute("errorMessage", e.getMessage());
             return "teacher-form";
         }
+    }
 
-        TeacherReadOnlyDTO teacherReadOnlyDTO = mapper.mapToTeacherReadOnlyDTO(savedTeacher);
-        model.addAttribute("teacher", savedTeacher);
-        return "success";
+    @GetMapping("/success")
+    public String successPage(@ModelAttribute("teacher") TeacherReadOnlyDTO teacher,
+                              Model model) {
+        // Flash attributes will be available here
+        return "success"; // Renders success.html
     }
 }

@@ -63,9 +63,10 @@ public class SecurityConfig {
                                  *
                                  * @param formLogin a configurer for form login
                                  */
-                                .loginPage("/login")                    // NOT default
+                                .loginPage("/login")       // NOT default
+                                .defaultSuccessUrl("/school/teachers", true)
                                 .permitAll()
-                                .defaultSuccessUrl("/school/teachers")        // NOT default
+                                        // NOT default
 
                         //.loginProcessingUrl("/login")         // default for post requests
                         //.usernameParameter("username")        // default

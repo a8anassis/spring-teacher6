@@ -21,28 +21,25 @@
             <div class="row">
                 <div>
                     <label for="firstname">First Name:</label><br>
-                    <input type="text" id="firstname" th:field="*{firstname}"
-                           th:classappend="${#fields.hasErrors('firstname')} ? 'error'" />
+                    <input type="text" id="firstname" th:field="*{firstname}"/>
                     <div th:if="${#fields.hasErrors('firstname')}">
-                        <p th:errors="*{firstname}"></p>
+                        <p th:classappend="${#fields.hasErrors('firstname')} ? 'error'" th:errors="*{firstname}"></p>
                     </div>
                 </div>
 
                 <div>
                     <label for="lastname">Lastname Name:</label><br>
-                    <input type="text" id="lastname" th:field="*{lastname}"
-                           th:classappend="${#fields.hasErrors('lastname')} ? 'error'" />
+                    <input type="text" id="lastname" th:field="*{lastname}"/>
                     <div th:if="${#fields.hasErrors('lastname')}">
-                        <p th:errors="*{lastname}"></p>
+                        <p  th:classappend="${#fields.hasErrors('lastname')} ? 'error'" th:errors="*{lastname}"></p>
                     </div>
                 </div>
 
                 <div>
                     <label for="vat">Vat: </label><br>
-                    <input type="text" id="vat" th:field="*{vat}"
-                           th:classappend="${#fields.hasErrors('vat')} ? 'error'" />
+                    <input type="text" id="vat" th:field="*{vat}"/>
                     <div th:if="${#fields.hasErrors('vat')}">
-                        <p th:errors="*{vat}"></p>
+                        <p th:classappend="${#fields.hasErrors('vat')} ? 'error'" th:errors="*{vat}"></p>
                     </div>
                 </div>
 

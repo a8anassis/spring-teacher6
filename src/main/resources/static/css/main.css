@@ -38,6 +38,7 @@ body {
     text-decoration: none; /* Remove underline from links */
     display: inline-block; /* Allows padding to work correctly on <a> */
 }
+
 .custom-button-green:hover {
     background-color: var(--green-color-hover);
 }
