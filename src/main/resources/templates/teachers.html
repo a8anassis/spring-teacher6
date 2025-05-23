@@ -25,6 +25,7 @@
         </tr>
         </thead>
         <tbody>
+<!--        sec:authorize="hasRole('ADMIN')-->
         <!-- Iterate over the content of the current page -->
         <tr th:each="teacher : ${teachersPage.content}">
             <td th:text="${teacher.id}"></td>
