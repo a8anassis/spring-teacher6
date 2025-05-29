@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/springsecurity">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Header</title>
+    <!-- Tailwind CSS v4 via Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<header th:fragment="headerFragment">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <!-- Left: Logo and Title -->
+        <div class="flex items-center space-x-4">
+            <a th:href="@{/}" aria-label="Go to homepage">
+                <img th:src="@{/img/gov_header_logo.svg}" alt="Greek Government Logo" class="h-10 w-auto" />
+            </a>
+            <span class="text-lg sm:text-xl font-semibold text-gray-800">
+        Coding Factory – <span class="text-blue-600">Education Reinvented</span>
+      </span>
+        </div>
+
+        <!-- Right: Username and Logout -->
+        <div class="flex items-center space-x-4">
+            <span sec:authorize="isAuthenticated()" th:text="${#authentication.name}" class="text-gray-700 font-medium"></span>
+            <a th:href="@{/logout}" sec:authorize="isAuthenticated()" class="text-red-600 hover:text-red-800 transition duration-150">
+                Έξοδος
+            </a>
+        </div>
+    </nav>
+    <div class="border-t border-gray-200"></div>
+</header>
+
+</body>
+</html>
