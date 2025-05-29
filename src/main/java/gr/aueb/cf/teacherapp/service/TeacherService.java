@@ -11,6 +11,8 @@ import gr.aueb.cf.teacherapp.repository.RegionRepository;
 import gr.aueb.cf.teacherapp.repository.TeacherRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +23,8 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class TeacherService implements ITeacherService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(TeacherService.class);
 
     private final TeacherRepository teacherRepository;
     private final RegionRepository regionRepository;
