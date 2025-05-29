@@ -70,9 +70,9 @@ public class TeacherController {
 
         try {
             savedTeacher = teacherService.saveTeacher(teacherInsertDTO);
-            LOGGER.info("Teacher with id {} inserted", savedTeacher.getId());
+            LOGGER.info("Teacher with id={} inserted", savedTeacher.getId());
             TeacherReadOnlyDTO teacherReadOnlyDTO = mapper.mapToTeacherReadOnlyDTO(savedTeacher);
-            //model.addAttribute("teacher", savedTeacher);
+            //model.addAttribute("teacher", savedTeacher); -- request scope
             redirectAttributes.addFlashAttribute("teacher", mapper.mapToTeacherReadOnlyDTO(savedTeacher));
             return "redirect:/school/success";
         } catch (EntityAlreadyExistsException | EntityInvalidArgumentException e) {
