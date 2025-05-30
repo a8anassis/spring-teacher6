@@ -28,7 +28,7 @@ public class UserController {
     @GetMapping("/users/register")
     public String getUserForm(Model model) {
         model.addAttribute("userInsertDTO", new UserInsertDTO());
-        return "user-form";
+        return "user-form2";
     }
 
     // Process the form submission
@@ -40,7 +40,7 @@ public class UserController {
 
         if (bindingResult.hasErrors()) {
             // If validation errors exist, return the form with error messages
-            return "user-form";
+            return "user-form2";
         }
 
         // Convert DTO to User entity and save (here you also encrypt the password)
@@ -48,6 +48,6 @@ public class UserController {
 
         userService.saveUser(user);
         //attrs.addAttribute("success", "");
-        return "redirect:/";  // Redirect with success message
+        return "redirect:/";  // Redirect to landing page
     }
 }

@@ -6,11 +6,6 @@
 <body>
 <h1>Create New User</h1>
 
-<!-- Display success message -->
-<div th:if="${param.success}" style="color: green;">
-    User created successfully!
-</div>
-
 <form method="post" th:object="${userInsertDTO}">
 
     <div>
