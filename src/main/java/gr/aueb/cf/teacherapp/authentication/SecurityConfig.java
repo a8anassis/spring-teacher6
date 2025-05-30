@@ -65,7 +65,7 @@ public class SecurityConfig {
                                  * @param formLogin a configurer for form login
                                  */
                                 .loginPage("/login")       // NOT default
-                                .defaultSuccessUrl("/school/teachers", true)
+                                .defaultSuccessUrl("/school/teachers", true)   // referrer - originally requested URL
                                 .permitAll()
                                         // NOT default
 

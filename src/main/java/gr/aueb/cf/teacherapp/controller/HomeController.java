@@ -9,8 +9,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String index() {
-        // Return the name of the Thymeleaf template (without the .html extension)
         return "index";
     }
-
 }

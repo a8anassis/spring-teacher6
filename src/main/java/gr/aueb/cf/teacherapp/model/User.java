@@ -27,6 +27,15 @@ public class User extends AbstractEntity implements UserDetails {
     private String username;
     private String password;
 
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    private Set<Role> authorities;
+//
+//    // Implement UserDetails methods
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return this.authorities;
+//    }
+
     @Enumerated(EnumType.STRING)
     private Role role;
 

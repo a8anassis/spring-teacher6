@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/school")
@@ -35,7 +36,7 @@ public class UserController {
     public String insertUser(
             @Valid @ModelAttribute("userInsertDTO") UserInsertDTO userInsertDTO,
             BindingResult bindingResult,
-            Model model) {
+            Model model, RedirectAttributes attrs) {
 
         if (bindingResult.hasErrors()) {
             // If validation errors exist, return the form with error messages
@@ -46,7 +47,7 @@ public class UserController {
         User user = mapper.mapToUserEntity(userInsertDTO);
 
         userService.saveUser(user);
-
-        return "redirect:/users/register?success";  // Redirect with success message
+        //attrs.addAttribute("success", "");
+        return "redirect:/";  // Redirect with success message
     }
 }
