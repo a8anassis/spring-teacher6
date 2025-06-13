@@ -22,5 +22,4 @@ public class UserInsertDTO {
     private String password;
 
     private String role; // assuming you want the user to select a role
-
 }
